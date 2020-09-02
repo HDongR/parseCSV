@@ -11,12 +11,12 @@ import (
 )
 
 type product struct {
-	productUrl         string
-	img                string
-	img1               string
-	img2               string
-	img3               string
-	brand              string
+	productURL         string
+	Img                string
+	Img1               string
+	Img2               string
+	Img3               string
+	Brand              string
 	skuStyleIsNow      string
 	season             string
 	year               string
@@ -26,11 +26,11 @@ type product struct {
 	colorSupplier      string
 	madeIn             string
 	material           string
-	name               string
+	Name               string
 	description        string
 	categories         string
-	qty                string
-	retailPrice        string
+	Qty                string
+	RetailPrice        string
 	discount           string
 	sizeInfo           string
 	size               string
@@ -74,8 +74,14 @@ func setupRouter() *gin.Engine {
 	r.GET("/", func(c *gin.Context) {
 		rst := parsingCSV()
 		//d := (*rst)[0]
+		cntList := len(*rst)
+
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"title": rst,
+			"title":     "ParseCSV",
+			"FirstName": "hodong",
+			"length":    cntList,
+			"URL":       c.Request.URL.Path,
+			"rst":       rst,
 		})
 	})
 
